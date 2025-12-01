@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Your Cardiovascular Risk Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 16.67%;"></div>
+        </div>
+        <div class="progress-text">Page <span id="currentPage">1</span> of 6</div>
+    </div>
+
+    <!-- Page 1: Welcome -->
+    <div class="page active" id="page1">
+        <div class="container">
+            <div class="header">
+                <div class="heart-icon">❤️</div>
+                <h1>Understanding Your Cardiovascular Risk Assessment</h1>
+            </div>
+            
+            <div class="welcome-content">
+                <p class="intro-text">
+                    You've received two different risk assessments for your cardiovascular health. 
+                    This tool will help you understand the difference between these assessments 
+                    and guide you in making an informed decision about your care.
+                </p>
+                
+                <div class="score-cards-preview">
+                    <div class="score-card">
+                        <button class="score-icon-button" type="button" aria-label="Learn more about Traditional Risk Score" data-score-type="frs">
+                            <div class="score-icon">📊</div>
+                        </button>
+                        <h3>Traditional Score</h3>
+                        <p>Framingham Risk Score</p>
+                        <div class="score-info-tooltip" id="frsTooltip" role="tooltip">
+                            <div class="tooltip-content">
+                                <h4>Framingham Risk Score (FRS)</h4>
+                                <p><strong>What it measures:</strong> Your 10-year risk of having a major cardiovascular event (like a heart attack or stroke).</p>
+                                <p><strong>How it's calculated:</strong> Uses traditional factors including your age, sex, total cholesterol, HDL cholesterol, systolic blood pressure, smoking status, hypertension medication use, and family history of early cardiovascular disease.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score-card">
+                        <button class="score-icon-button" type="button" aria-label="Learn more about AI Risk Score" data-score-type="ai">
+                            <div class="score-icon">🤖</div>
+                        </button>
+                        <h3>AI Score</h3>
+                        <p>AI-Based Prediction</p>
+                        <div class="score-info-tooltip" id="aiTooltip" role="tooltip">
+                            <div class="tooltip-content">
+                                <h4>AI-Predicted Risk Score</h4>
+                                <p><strong>What it measures:</strong> Your risk of cardiovascular events using artificial intelligence analysis of multiple factors.</p>
+                                <p><strong>How it's calculated:</strong> Uses advanced AI models that can analyze a wider range of data, including traditional factors plus additional information like medical images, genetic markers, detailed lab results, and social determinants of health.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <p><strong>What to expect:</strong> This decision aid will take about 15-20 minutes to complete. 
+                    You'll learn about your risk scores, compare your options, and identify what matters most to you.</p>
+                </div>
+
+                <div class="access-card" id="authCard">
+                    <h2>Sign In to Access Your Scores</h2>
+                    <p>Use the email and password you registered with your clinician.</p>
+                    <form id="authForm" class="access-form">
+                        <div class="form-field">
+                            <label for="authEmail">Email</label>
+                            <input type="email" id="authEmail" name="authEmail" placeholder="person@example.com" autocomplete="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="authPassword">Password</label>
+                            <input type="password" id="authPassword" name="authPassword" placeholder="••••••••" autocomplete="current-password" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-primary" id="signInButton">Sign In</button>
+                            <button type="button" class="btn-secondary hidden" id="signOutButton">Sign Out</button>
+                        </div>
+                    </form>
+                    <div class="status-message" id="authStatus" aria-live="polite"></div>
+                </div>
+
+                <div class="verification-card hidden" id="verificationCard">
+                    <h2>Confirm Your Identity</h2>
+                    <p>After signing in, enter your clinician-provided ID and date of birth to unlock your personalized data.</p>
+                    <form id="verificationForm" class="access-form">
+                        <div class="form-field">
+                            <label for="patientId">Patient ID</label>
+                            <input type="text" id="patientId" name="patientId" placeholder="e.g., AJ-482913" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="patientDob">Date of Birth</label>
+                            <input type="date" id="patientDob" name="patientDob" required>
+                        </div>
+                        <button type="submit" class="btn-primary" id="verifyButton">Verify & Load Scores</button>
+                    </form>
+                    <div class="status-message" id="verificationStatus" aria-live="polite"></div>
+                </div>
+                
+                <button class="btn-primary" id="beginJourneyButton" onclick="nextPage()" disabled>Begin Your Decision Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Step 1 - Clarify Risk Data -->
+    <div class="page" id="page2">
+        <div class="container">
+            <div class="step-header">
+                <span class="step-number">Step 1 of 5</span>
+                <h1>Your Personalized Risk Scores</h1>
+            </div>
+            
+            <div class="risk-comparison">
+                <div class="risk-card">
+                    <h2>Traditional Risk Score (FRS)</h2>
+                    <div class="risk-meter">
+                        <div class="risk-gauge" id="frsGauge">
+                            <div class="gauge-fill" id="frsGaugeFill" style="width: 0%;"></div>
+                        </div>
+                        <div class="risk-percentage" id="frsPercentage">--</div>
+                        <div class="risk-label" id="frsLabel">Awaiting Lookup</div>
+                    </div>
+                </div>
+                
+                <div class="risk-card">
+                    <h2>AI-Predicted Risk</h2>
+                    <div class="risk-meter">
+                        <div class="risk-gauge" id="aiGauge">
+                            <div class="gauge-fill" id="aiGaugeFill" style="width: 0%;"></div>
+                        </div>
+                        <div class="risk-percentage" id="aiPercentage">--</div>
+                        <div class="risk-label" id="aiLabel">Awaiting Lookup</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="risk-levels-info">
+                <div class="risk-level-card">
+                    <h3>Traditional Score (FRS) Risk Levels</h3>
+                    <ul>
+                        <li><strong>Low risk:</strong> Less than 10%</li>
+                        <li><strong>Moderate risk:</strong> 10-19%</li>
+                        <li><strong>High risk:</strong> 20% or higher</li>
+                    </ul>
+                </div>
+                <div class="risk-level-card">
+                    <h3>AI Score Risk Levels (0-100 index)</h3>
+                    <ul>
+                        <li><strong>Low risk:</strong> Less than 30</li>
+                        <li><strong>Moderate risk:</strong> 30-40</li>
+                        <li><strong>High risk:</strong> Greater than 40</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3>What does this difference mean?</h3>
+                <p>
+                    AI models are statistically better at identifying patients who might be missed by traditional scores. 
+                    This means the AI model has a lower "false negative" rate - it's less likely to miss someone who 
+                    actually has high cardiovascular risk.
+                </p>
+                <details class="expandable">
+                    <summary>Learn More About Statistical Accuracy</summary>
+                    <p>
+                        Research shows that AI models can achieve accuracy rates (AUC) of up to 0.91, compared to 
+                        traditional scores like FRS which typically achieve 0.74. This means AI models are better at 
+                        correctly identifying both high-risk and low-risk patients.
+                    </p>
+                </details>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn-secondary" onclick="prevPage()">Back</button>
+                <button class="btn-primary" onclick="nextPage()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Step 2 - Compare Score Limitations -->
+    <div class="page" id="page3">
+        <div class="container">
+            <div class="step-header">
+                <span class="step-number">Step 2 of 5</span>
+                <h1>Understanding the Trade-offs</h1>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-icon">📊</div>
+                        <h2>Traditional Score (FRS)</h2>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>✅ Advantages</h3>
+                        <ul>
+                            <li>Well-validated through decades of research</li>
+                            <li>Easy to understand and explain</li>
+                            <li>Widely accepted by medical community</li>
+                            <li>Proven track record in clinical practice</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>❌ Disadvantages</h3>
+                        <ul>
+                            <li>Uses limited number of variables</li>
+                            <li>May miss some high-risk patients</li>
+                            <li>Less precise for individual predictions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>✓ What We Know</h3>
+                        <ul>
+                            <li>Decades of research and validation</li>
+                            <li>Proven effective in large populations</li>
+                            <li>Standard approach in medical practice</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>? What We Don't Know</h3>
+                        <ul>
+                            <li>May not capture all relevant risk factors</li>
+                            <li>Individual accuracy can vary</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="comparison-card">
+                    <div class="comparison-header">
+                        <div class="comparison-icon">🤖</div>
+                        <h2>AI Score</h2>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>✅ Advantages</h3>
+                        <ul>
+                            <li>More accurate predictions overall</li>
+                            <li>Considers many more factors</li>
+                            <li>Better at identifying missed cases</li>
+                            <li>Shows promise in research studies</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>❌ Disadvantages</h3>
+                        <ul>
+                            <li>"Black box" problem - hard to explain how it works</li>
+                            <li>Limited validation in real-world settings</li>
+                            <li>Potential for bias or errors</li>
+                            <li>Less trust from patients and doctors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>✓ What We Know</h3>
+                        <ul>
+                            <li>Shows higher accuracy in research studies</li>
+                            <li>Can identify patterns humans might miss</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3>? What We Don't Know</h3>
+                        <ul>
+                            <li>Long-term outcomes in real patients</li>
+                            <li>Potential biases or limitations</li>
+                            <li>How well it works for different populations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <p><strong>Key Point:</strong> Neither score is perfect. The traditional score is well-tested but may miss some cases. 
+                The AI score is more accurate but less understood. Your decision will depend on how you weigh these trade-offs.</p>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn-secondary" onclick="prevPage()">Back</button>
+                <button class="btn-primary" onclick="nextPage()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Step 3 - List Options & Outcomes -->
+    <div class="page" id="page4">
+        <div class="container">
+            <div class="step-header">
+                <span class="step-number">Step 3 of 5</span>
+                <h1>Your Treatment Options</h1>
+            </div>
+            
+            <p class="intro-text">Below are your three main options. Each option includes advantages, disadvantages, 
+            and what we know and don't know about it.</p>
+            
+            <div class="options-container">
+                <!-- Option 1 -->
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-icon">📅</div>
+                        <h2>Option 1: Continue Monitoring (Status Quo)</h2>
+                    </div>
+                    
+                    <div class="option-content">
+                        <details class="option-details">
+                            <summary><strong>✅ Advantages</strong></summary>
+                            <ul>
+                                <li>No immediate lifestyle changes required</li>
+                                <li>Avoids potential medication side effects</li>
+                                <li>Lower immediate costs</li>
+                                <li>More time to gather information</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>❌ Disadvantages</strong></summary>
+                            <ul>
+                                <li>Risk may progress if AI model is correct</li>
+                                <li>Missed opportunity for early intervention</li>
+                                <li>Potential for future complications</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>✓ What We Know</strong></summary>
+                            <ul>
+                                <li>Traditional score suggests moderate risk</li>
+                                <li>Regular monitoring is a standard approach</li>
+                                <li>Many patients do well with this approach</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>? What We Don't Know</strong></summary>
+                            <ul>
+                                <li>Whether AI model's higher risk prediction is accurate for you</li>
+                                <li>Long-term outcomes without intervention</li>
+                                <li>If risk will increase over time</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Option 2 -->
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-icon">🍎</div>
+                        <h2>Option 2: Lifestyle Changes Only</h2>
+                    </div>
+                    
+                    <div class="option-content">
+                        <details class="option-details">
+                            <summary><strong>✅ Advantages</strong></summary>
+                            <ul>
+                                <li>No medication side effects</li>
+                                <li>Improves overall health regardless of risk level</li>
+                                <li>Low cost, high benefit</li>
+                                <li>Empowers you to take control</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>❌ Disadvantages</strong></summary>
+                            <ul>
+                                <li>Requires significant commitment</li>
+                                <li>May not be sufficient if risk is truly high</li>
+                                <li>Results take time to manifest</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>✓ What We Know</strong></summary>
+                            <ul>
+                                <li>Lifestyle changes reduce cardiovascular risk</li>
+                                <li>Effective for many patients</li>
+                                <li>Benefits include weight loss, better blood pressure, improved cholesterol</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>? What We Don't Know</strong></summary>
+                            <ul>
+                                <li>Whether lifestyle alone addresses your specific risk level</li>
+                                <li>How much risk reduction you'll achieve</li>
+                                <li>If it will be enough if AI model is correct</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Option 3 -->
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-icon">💊</div>
+                        <h2>Option 3: Aggressive Intervention (Medication/Testing)</h2>
+                    </div>
+                    
+                    <div class="option-content">
+                        <details class="option-details">
+                            <summary><strong>✅ Advantages</strong></summary>
+                            <ul>
+                                <li>Most proactive approach</li>
+                                <li>Early detection if AI model is correct</li>
+                                <li>Potential to prevent serious events</li>
+                                <li>Comprehensive diagnostic information</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>❌ Disadvantages</strong></summary>
+                            <ul>
+                                <li>Medication side effects (e.g., statin muscle pain, liver concerns)</li>
+                                <li>Higher immediate costs (testing, medications)</li>
+                                <li>Potential for over-treatment if AI model is wrong</li>
+                                <li>Stress and anxiety from additional testing</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>✓ What We Know</strong></summary>
+                            <ul>
+                                <li>Statins reduce cardiovascular events</li>
+                                <li>Diagnostic tests can identify problems early</li>
+                                <li>Effective for high-risk patients</li>
+                            </ul>
+                        </details>
+                        
+                        <details class="option-details">
+                            <summary><strong>? What We Don't Know</strong></summary>
+                            <ul>
+                                <li>Whether you truly need this level of intervention</li>
+                                <li>Long-term effects of early statin initiation</li>
+                                <li>Accuracy of AI prediction for your specific case</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn-secondary" onclick="prevPage()">Back</button>
+                <button class="btn-primary" onclick="nextPage()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Step 4 - Assess Personal Values -->
+    <div class="page" id="page5">
+        <div class="container">
+            <div class="step-header">
+                <span class="step-number">Step 4 of 5</span>
+                <h1>What Matters Most to You?</h1>
+            </div>
+            
+            <p class="intro-text">
+                Move the sliders below to show how important each value is to you. 
+                This will help identify which option best aligns with your preferences.
+            </p>
+            
+            <div class="values-container">
+                <div class="value-card">
+                    <div class="value-header">
+                        <div class="value-icon">🛡️</div>
+                        <h2>Risk Avoidance</h2>
+                    </div>
+                    <p class="value-description">
+                        I want to minimize my chance of a heart event, even if it means taking medication or having tests.
+                    </p>
+                    <div class="slider-container">
+                        <input type="range" min="1" max="10" value="5" class="slider" id="riskAvoidance">
+                        <div class="slider-labels">
+                            <span>Not Important</span>
+                            <span>Very Important</span>
+                        </div>
+                        <div class="slider-value">Value: <span id="riskValue">5</span></div>
+                    </div>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-header">
+                        <div class="value-icon">✋</div>
+                        <h2>Intervention Avoidance</h2>
+                    </div>
+                    <p class="value-description">
+                        I prefer to avoid medication and testing unless absolutely necessary.
+                    </p>
+                    <div class="slider-container">
+                        <input type="range" min="1" max="10" value="5" class="slider" id="interventionAvoidance">
+                        <div class="slider-labels">
+                            <span>Not Important</span>
+                            <span>Very Important</span>
+                        </div>
+                        <div class="slider-value">Value: <span id="interventionValue">5</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recommendation-preview" id="recommendationPreview">
+                <h3>Based on your values:</h3>
+                <p id="recommendationText">Move the sliders to see your personalized recommendation.</p>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn-secondary" onclick="prevPage()">Back</button>
+                <button class="btn-primary" onclick="nextPage()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Step 5 - Final Decision & Summary -->
+    <div class="page" id="page6">
+        <div class="container">
+            <div class="step-header">
+                <span class="step-number">Step 5 of 5</span>
+                <h1>Your Decision Summary</h1>
+            </div>
+            
+            <div class="summary-container">
+                <div class="summary-card">
+                    <h2>Recommended Option</h2>
+                    <div class="recommended-option" id="finalRecommendation">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <p id="recommendationExplanation" class="recommendation-explanation">
+                        <!-- Will be populated by JavaScript -->
+                    </p>
+                </div>
+                
+                <div class="summary-card">
+                    <h2>Your Risk Scores</h2>
+                    <div class="summary-scores">
+                        <div class="summary-score">
+                            <strong>Traditional Score:</strong> 
+                            <span id="summaryFrsPercentage">--</span> 
+                            (<span id="summaryFrsLabel">Awaiting Lookup</span>)
+                        </div>
+                        <div class="summary-score">
+                            <strong>AI Score:</strong> 
+                            <span id="summaryAiPercentage">--</span> 
+                            (<span id="summaryAiLabel">Awaiting Lookup</span>)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <h2>Your Next Steps</h2>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step1">
+                            <label for="step1">Schedule a follow-up appointment with your doctor</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step2">
+                            <label for="step2">Review this summary before your appointment</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step3">
+                            <label for="step3">Prepare questions to discuss with your doctor</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step4">
+                            <label for="step4">Bring this summary to your appointment</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <h2>Questions to Discuss with Your Doctor</h2>
+                    <ul class="questions-list">
+                        <li>Based on my values and risk scores, is the recommended option right for me?</li>
+                        <li>What are the specific risks and benefits for my situation?</li>
+                        <li>What monitoring will be needed if I choose this option?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="window.print()">Print Summary</button>
+                <button class="btn-secondary" onclick="prevPage()">Back</button>
+            </div>
+            
+            <div class="confirmation-box">
+                <label class="confirmation-label">
+                    <input type="checkbox" id="confirmation">
+                    <span>I'm ready to discuss this with my doctor</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

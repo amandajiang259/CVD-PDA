@@ -486,9 +486,17 @@ function confirmPatientDetails(data, enteredId, enteredDob) {
 function applyScoresToUI(data) {
     const frsScore = clampPercentage(data.frsScore);
     const aiScore = clampAIScore(data.aiScore);
+    
+    // Debug logging
+    console.log('Raw AI Score from data:', data.aiScore);
+    console.log('Clamped AI Score:', aiScore);
+    console.log('Formatted AI Score:', formatAIScore(aiScore));
+    
     // Always calculate labels from scores (ignore hardcoded labels in Firestore)
     const frsLabel = determineFRSRiskLabel(frsScore);
     const aiLabel = determineAIRiskLabel(aiScore);
+    
+    console.log('AI Risk Label:', aiLabel);
 
     updateTextContent('frsPercentage', formatPercentage(frsScore));
     updateTextContent('aiPercentage', formatAIScore(aiScore));
@@ -675,13 +683,15 @@ function determineAIRiskLabel(score) {
     if (typeof score !== 'number') {
         return 'Awaiting Lookup';
     }
-    if (score > 0.90) {
+    // Round to 2 decimal places for consistent comparison
+    const roundedScore = Math.round(score * 100) / 100;
+    if (roundedScore > 0.90) {
         return 'High Risk';
     }
-    if (score >= 0.70) {
+    if (roundedScore >= 0.70) {
         return 'Moderate Risk';
     }
-    if (score >= 0.50) {
+    if (roundedScore >= 0.50) {
         return 'Low Risk';
     }
     return 'Really Low Risk';
@@ -692,12 +702,21 @@ function clampAIScore(value) {
     if (value === undefined || value === null || value === '') {
         return null;
     }
-    const numeric = Number(value);
+    let numeric = Number(value);
     if (Number.isNaN(numeric)) {
         return null;
     }
+    
+    // If value is > 1, it might be stored as percentage (e.g., 90 instead of 0.90)
+    // Convert to decimal if needed
+    if (numeric > 1 && numeric <= 100) {
+        numeric = numeric / 100;
+        console.log('Converted AI score from percentage to decimal:', numeric);
+    }
+    
     // Clamp to 0.00-1.00 range and round to 2 decimal places
-    return Math.min(Math.max(parseFloat(numeric.toFixed(2)), 0), 1);
+    const clamped = Math.min(Math.max(parseFloat(numeric.toFixed(2)), 0), 1);
+    return clamped;
 }
 
 function updateTextContent(id, value) {

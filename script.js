@@ -500,7 +500,8 @@ function applyScoresToUI(data) {
     updateTextContent('summaryAiLabel', aiLabel);
 
     updateGaugeFill('frsGaugeFill', frsScore);
-    updateGaugeFill('aiGaugeFill', aiScore);
+    // Convert AUC (0.00-1.00) to percentage (0-100) for gauge display
+    updateGaugeFill('aiGaugeFill', aiScore !== null ? aiScore * 100 : null);
     
     // Update gauge classes based on risk level
     updateGaugeClass('frsGauge', frsLabel);
@@ -620,12 +621,13 @@ function formatDobInput(value) {
 //     * Moderate risk: 10-19%
 //     * High risk: ≥ 20%
 //
-// AI Score:
-//   - Range: 0-100 (AI risk index)
+// AI Score (AUC/Confidence Level):
+//   - Range: 0.00-1.00 (Area Under the Curve / Confidence level)
 //   - Risk Stratification:
-//     * Low: < 30
-//     * Moderate: 30-40
-//     * High: > 40
+//     * Really Low: < 0.50
+//     * Low: 0.50-0.70
+//     * Moderate: 0.70-0.90
+//     * High: > 0.90
 // ============================================================================
 
 // Clamp FRS score to valid percentage range (0-100)
@@ -645,7 +647,11 @@ function formatPercentage(value) {
 }
 
 function formatAIScore(value) {
-    return typeof value === 'number' ? `${value}` : '--';
+    if (typeof value !== 'number') {
+        return '--';
+    }
+    // Format AUC as decimal with 2 decimal places (e.g., 0.85)
+    return value.toFixed(2);
 }
 
 // Determine FRS risk label based on percentage score
@@ -663,22 +669,25 @@ function determineFRSRiskLabel(score) {
     return 'Low Risk';
 }
 
-// Determine AI risk label based on 0-100 index score
+// Determine AI risk label based on AUC/confidence level (0.00-1.00)
 // See documentation block above for risk stratification ranges
 function determineAIRiskLabel(score) {
     if (typeof score !== 'number') {
         return 'Awaiting Lookup';
     }
-    if (score > 40) {
+    if (score > 0.90) {
         return 'High Risk';
     }
-    if (score >= 30) {
+    if (score >= 0.70) {
         return 'Moderate Risk';
     }
-    return 'Low Risk';
+    if (score >= 0.50) {
+        return 'Low Risk';
+    }
+    return 'Really Low Risk';
 }
 
-// Clamp AI score to valid range (0-100)
+// Clamp AI score to valid AUC range (0.00-1.00)
 function clampAIScore(value) {
     if (value === undefined || value === null || value === '') {
         return null;
@@ -687,7 +696,8 @@ function clampAIScore(value) {
     if (Number.isNaN(numeric)) {
         return null;
     }
-    return Math.min(Math.max(Math.round(numeric), 0), 100);
+    // Clamp to 0.00-1.00 range and round to 2 decimal places
+    return Math.min(Math.max(parseFloat(numeric.toFixed(2)), 0), 1);
 }
 
 function updateTextContent(id, value) {
@@ -712,10 +722,12 @@ function updateGaugeClass(gaugeId, riskLabel) {
     }
     
     // Remove all risk classes
-    gaugeEl.classList.remove('low', 'moderate', 'high');
+    gaugeEl.classList.remove('low', 'moderate', 'high', 'really-low');
     
     // Add appropriate class based on label
-    if (riskLabel.includes('Low')) {
+    if (riskLabel.includes('Really Low')) {
+        gaugeEl.classList.add('really-low');
+    } else if (riskLabel.includes('Low') && !riskLabel.includes('Really')) {
         gaugeEl.classList.add('low');
     } else if (riskLabel.includes('Moderate')) {
         gaugeEl.classList.add('moderate');

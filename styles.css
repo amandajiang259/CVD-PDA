@@ -288,6 +288,68 @@ p {
     border-radius: 5px;
 }
 
+.references-section {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.references-details {
+    cursor: pointer;
+}
+
+.references-details summary {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 10px;
+    list-style: none;
+    user-select: none;
+}
+
+.references-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.references-details summary::before {
+    content: '▶ ';
+    display: inline-block;
+    margin-right: 8px;
+    transition: transform 0.2s;
+}
+
+.references-details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.references-content {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.references-content ol {
+    margin: 0;
+    padding-left: 30px;
+}
+
+.references-content li {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: left;
+}
+
+.references-content li em {
+    font-style: italic;
+}
+
 .access-card {
     background-color: #fffaf2;
     border: 2px solid #f39c12;
@@ -413,6 +475,10 @@ p {
     overflow: hidden;
     margin-bottom: 15px;
     position: relative;
+}
+
+.risk-gauge.really-low .gauge-fill {
+    background-color: #90EE90;
 }
 
 .risk-gauge.low .gauge-fill {

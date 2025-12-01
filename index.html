@@ -166,17 +166,33 @@
             
             <div class="info-box">
                 <h3>What does this difference mean?</h3>
-                <p>
-                    AI models are statistically better at identifying patients who might be missed by traditional scores. 
-                    This means the AI model has a lower "false negative" rate - it's less likely to miss someone who 
-                    actually has high cardiovascular risk.
-                </p>
                 <details class="expandable">
-                    <summary>Learn More About Statistical Accuracy</summary>
+                    <summary>Traditional Score is Higher</summary>
                     <p>
-                        Research shows that AI models can achieve accuracy rates (AUC) of up to 0.91, compared to 
-                        traditional scores like FRS which typically achieve 0.74. This means AI models are better at 
-                        correctly identifying both high-risk and low-risk patients.
+                        It flags a risk based on established and proven factors contributing to cardiovascular disease 
+                        such as age, gender, blood pressure, cholesterol, smoking status, etc., which is a key priority for
+                        established clinical guidelines.                        
+                    </p>
+                </details>
+                <details class="expandable">
+                    <summary>Traditional Score is Lower</summary>
+                    <p>
+                        It suggests your basic, well-tested risk factors are low, but it may be missing subtle risks it
+                        wasn't designed to see. This may include your genetic markers and medical images.
+                    </p>
+                </details>
+                <details class="expandable">
+                    <summary>AI Score is Higher</summary>
+                    <p>
+                        It suggests a strong signal was found in both the proven factors (like age, cholesterol, etc.)
+                        and your complex data (like a subtle abnormalities in a medical image) that increase your risk.                        
+                    </p>
+                </details>
+                <details class="expandable">
+                    <summary>AI Score is Lower</summary>
+                    <p>
+                        It suggests the data processed proves that your overall health profile is low risk,
+                        despite basic risk factors analyzed by the traditional score.
                     </p>
                 </details>
             </div>
@@ -318,25 +334,25 @@
             
             <div class="references-section">
                 <details class="references-details">
-                    <summary><strong>References (For Instructor)</strong></summary>
+                    <summary><strong>References (APA)</strong></summary>
                     <div class="references-content">
                         <ol>
                             <li>Agarbattiwala, M., Patel, P., & Iqbalbhai, S. (2025). Comparative Study of Artificial Intelligence-Driven Diagnostic Models and Traditional Risk Scores in Predicting Cardiovascular Events. <em>The European Journal of Cardiovascular Medicine</em>. https://healthcare-bulletin.co.uk/article/comparative-study-of-artificial-intelligence-driven-diagnostic-models-and-traditional-risk-scores-in-predicting-cardiovascular-events-3141/.</li>
-                            <li>Singh, M., Kumar, A., Khanna, N. N., Laird, J. R., Nicolaides, A., Faa, G., Johri, A. M., Mantella, L. E., Fernandes, J. F. E., Teji, J. S., Singh, N., Fouda, M. M., Singh, R., Sharma, A., Kitas, G., Rathore, V., Singh, I. M., Tadepalli, K., Al-Maini, M., . . . Suri, J. S. (2024). Artificial intelligence for cardiovascular disease risk assessment in personalised framework: a scoping review. <em>EClinicalMedicine</em>, 73, 102660. https://doi.org/10.1016/j.eclinm.2024.102660.</li>
-                            <li>Sun, X., Yin, Y., Yang, Q., & Huo, T. (2023). Artificial intelligence in cardiovascular diseases: diagnostic and therapeutic perspectives. <em>European Journal of Medical Research</em>, 28(1). https://doi.org/10.1186/s40001-023-01065-y.</li>
+                            <li>Singh, M., Kumar, A., Khanna, N. N., Laird, J. R., Nicolaides, A., Faa, G., Johri, A. M., Mantella, L. E., Fernandes, J. F. E., Teji, J. S., Singh, N., Fouda, M. M., Singh, R., Sharma, A., Kitas, G., Rathore, V., Singh, I. M., Tadepalli, K., Al-Maini, M., . . . Suri, J. S. (2024). Artificial intelligence for cardiovascular disease risk assessment in personalised framework: a scoping review. <em>EClinicalMedicine, 73</em>, 102660. https://doi.org/10.1016/j.eclinm.2024.102660.</li>
+                            <li>Sun, X., Yin, Y., Yang, Q., & Huo, T. (2023). Artificial intelligence in cardiovascular diseases: diagnostic and therapeutic perspectives. <em>European Journal of Medical Research, 28</em>(1). https://doi.org/10.1186/s40001-023-01065-y.</li>
                             <li>Liu, W., Laranjo, L., Klimis, H., Chiang, J., Yue, J., Marschner, S., Quiroz, J. C., Jorm, L., & Chow, C. K. (2023). Machine-learning versus traditional approaches for atherosclerotic cardiovascular risk prognostication in primary prevention cohorts: a systematic review and meta-analysis. <em>European Heart Journal - Quality of Care and Clinical Outcomes</em>. https://doi.org/10.1093/ehjqcco/qcad017.</li>
-                            <li>Cai, Y., Cai, Y., Tang, L., Wang, Y., Gong, M., Jing, T., Li, H., Li-Ling, J., Hu, W., Yin, Z., Gong, D., & Zhang, G. (2024). Artificial intelligence in the risk prediction models of cardiovascular disease and development of an independent validation screening tool: a systematic review. <em>BMC Medicine</em>, 22(1). https://doi.org/10.1186/s12916-024-03273-7.</li>
-                            <li>Wang, Y. J., Yang, K., Wen, Y., Wang, P., Hu, Y., Lai, Y., Wang, Y., Zhao, K., Tang, S., Zhang, A., Zhan, H., Lu, M., Chen, X., Yang, S., Dong, Z., Wang, Y., Liu, H., Zhao, L., Huang, L., . . . Zhao, S. (2024). Screening and diagnosis of cardiovascular disease using artificial intelligence-enabled cardiac magnetic resonance imaging. <em>Nature Medicine</em>, 30(5), 1471–1480. https://doi.org/10.1038/s41591-024-02971-2.</li>
+                            <li>Cai, Y., Cai, Y., Tang, L., Wang, Y., Gong, M., Jing, T., Li, H., Li-Ling, J., Hu, W., Yin, Z., Gong, D., & Zhang, G. (2024). Artificial intelligence in the risk prediction models of cardiovascular disease and development of an independent validation screening tool: a systematic review. <em>BMC Medicine, 22</em>(1). https://doi.org/10.1186/s12916-024-03273-7.</li>
+                            <li>Wang, Y. J., Yang, K., Wen, Y., Wang, P., Hu, Y., Lai, Y., Wang, Y., Zhao, K., Tang, S., Zhang, A., Zhan, H., Lu, M., Chen, X., Yang, S., Dong, Z., Wang, Y., Liu, H., Zhao, L., Huang, L., . . . Zhao, S. (2024). Screening and diagnosis of cardiovascular disease using artificial intelligence-enabled cardiac magnetic resonance imaging. <em>Nature Medicine, 30</em>(5), 1471–1480. https://doi.org/10.1038/s41591-024-02971-2.</li>
                             <li>Provost, C., Broughan, J., McCombe, G., Kelly, M. O., Ledwidge, M. T., Cullen, W., & Gallagher, J. (2025). Artificial intelligence (AI) models for cardiovascular disease risk prediction in Primary and Ambulatory Care: A scoping review. <em>medRxiv (Cold Spring Harbor Laboratory)</em>. https://doi.org/10.1101/2025.03.21.25324379.</li>
                             <li>Pati, A., Addula, S. R., Panigrahi, A., Sahu, B., Nayak, D. S. K., & Dash, M. (2025). Artificial intelligence in improving disease diagnosis. In <em>CRC Press eBooks</em> (pp. 24–49). https://doi.org/10.1201/9781003508595-2.</li>
-                            <li>Elvas, L. B., Almeida, A., & Ferreira, J. C. (2025). The Role of AI in Cardiovascular Event Monitoring and Early Detection: Scoping Literature review. <em>JMIR Medical Informatics</em>, 13, e64349. https://doi.org/10.2196/64349.</li>
-                            <li>Ghorashi, S. M., Fazeli, A., Hedayat, B., Mokhtari, H., Jalali, A., Ahmadi, P., Chalian, H., Bragazzi, N. L., Shirani, S., & Omidi, N. (2022). Comparison of conventional scoring systems to machine learning models for the prediction of major adverse cardiovascular events in patients undergoing coronary computed tomography angiography. <em>Frontiers in Cardiovascular Medicine</em>, 9. https://doi.org/10.3389/fcvm.2022.994483.</li>
-                            <li>Sadeghi, Z., Alizadehsani, R., Cifci, M. A., Kausar, S., Rehman, R., Mahanta, P., Bora, P. K., Almasri, A., Alkhawaldeh, R. S., Hussain, S., Alatas, B., Shoeibi, A., Moosaei, H., Hladík, M., Nahavandi, S., & Pardalos, P. M. (2024). A review of Explainable Artificial Intelligence in healthcare. <em>Computers & Electrical Engineering</em>, 118, 109370. https://doi.org/10.1016/j.compeleceng.2024.109370.</li>
-                            <li>Weiner, E. B., Dankwa-Mullan, I., Nelson, W. A., & Hassanpour, S. (2025). Ethical challenges and evolving strategies in the integration of artificial intelligence into clinical practice. <em>PLOS Digital Health</em>, 4(4), e0000810. https://doi.org/10.1371/journal.pdig.0000810.</li>
-                            <li>Rezaeikhonakdar, D. (2023). AI chatbots and challenges of HIPAA compliance for AI developers and vendors. <em>The Journal of Law Medicine & Ethics</em>, 51(4), 988–995. https://doi.org/10.1017/jme.2024.15.</li>
-                            <li>Kessels, R. P. C. (2003). Patients' memory for medical information. <em>Journal of the Royal Society of Medicine</em>, 96(5), 219–222. https://doi.org/10.1177/014107680309600504.</li>
-                            <li>Krist, A. H., Tong, S. T., Aycock, R. A., & Longo, D. R. (2017). Engaging patients in decision-making and behavior change to promote prevention. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6996004/.</li>
-                            <li>Dash, S. (2022, October 19). Understanding the ROC and AUC Intuitively. <em>Medium</em>. Retrieved December 1, 2025, from https://medium.com/@shaileydash/understanding-the-roc-and-auc-intuitively-31ca96445c02.</li>
+                            <li>Elvas, L. B., Almeida, A., & Ferreira, J. C. (2025). The Role of AI in Cardiovascular Event Monitoring and Early Detection: Scoping Literature review. <em>JMIR Medical Informatics, 13</em>, e64349. https://doi.org/10.2196/64349.</li>
+                            <li>Ghorashi, S. M., Fazeli, A., Hedayat, B., Mokhtari, H., Jalali, A., Ahmadi, P., Chalian, H., Bragazzi, N. L., Shirani, S., & Omidi, N. (2022). Comparison of conventional scoring systems to machine learning models for the prediction of major adverse cardiovascular events in patients undergoing coronary computed tomography angiography. <em>Frontiers in Cardiovascular Medicine, 9</em>. https://doi.org/10.3389/fcvm.2022.994483.</li>
+                            <li>Sadeghi, Z., Alizadehsani, R., Cifci, M. A., Kausar, S., Rehman, R., Mahanta, P., Bora, P. K., Almasri, A., Alkhawaldeh, R. S., Hussain, S., Alatas, B., Shoeibi, A., Moosaei, H., Hladík, M., Nahavandi, S., & Pardalos, P. M. (2024). A review of Explainable Artificial Intelligence in healthcare. <em>Computers & Electrical Engineering, 118</em>, 109370. https://doi.org/10.1016/j.compeleceng.2024.109370.</li>
+                            <li>Weiner, E. B., Dankwa-Mullan, I., Nelson, W. A., & Hassanpour, S. (2025). Ethical challenges and evolving strategies in the integration of artificial intelligence into clinical practice. <em>PLOS Digital Health, 4</em>(4), e0000810. https://doi.org/10.1371/journal.pdig.0000810.</li>
+                            <li>Rezaeikhonakdar, D. (2023). AI chatbots and challenges of HIPAA compliance for AI developers and vendors. <em>The Journal of Law Medicine & Ethics, 51</em>(4), 988–995. https://doi.org/10.1017/jme.2024.15.</li>
+                            <li>Kessels, R. P. C. (2003). Patients' memory for medical information. <em>Journal of the Royal Society of Medicine, 96</em>(5), 219–222. https://doi.org/10.1177/014107680309600504.</li>
+                            <li>Krist, A. H., Tong, S. T., Aycock, R. A., & Longo, D. R. (2017). Engaging patients in decision-making and behavior change to promote prevention. <em>Studies in health technology and informatics, 240</em>, 284–302. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6996004/.</li>
+                            <li>Dash, S. (2022, October 19). <em>Understanding the ROC and AUC Intuitively</em>. Medium. Retrieved December 1, 2025, from https://medium.com/@shaileydash/understanding-the-roc-and-auc-intuitively-31ca96445c02.</li>
                         </ol>
                     </div>
                 </details>
@@ -655,25 +671,25 @@
             
             <div class="references-section">
                 <details class="references-details">
-                    <summary><strong>References (For Instructor)</strong></summary>
+                    <summary><strong>References (APA)</strong></summary>
                     <div class="references-content">
                         <ol>
                             <li>Agarbattiwala, M., Patel, P., & Iqbalbhai, S. (2025). Comparative Study of Artificial Intelligence-Driven Diagnostic Models and Traditional Risk Scores in Predicting Cardiovascular Events. <em>The European Journal of Cardiovascular Medicine</em>. https://healthcare-bulletin.co.uk/article/comparative-study-of-artificial-intelligence-driven-diagnostic-models-and-traditional-risk-scores-in-predicting-cardiovascular-events-3141/.</li>
-                            <li>Singh, M., Kumar, A., Khanna, N. N., Laird, J. R., Nicolaides, A., Faa, G., Johri, A. M., Mantella, L. E., Fernandes, J. F. E., Teji, J. S., Singh, N., Fouda, M. M., Singh, R., Sharma, A., Kitas, G., Rathore, V., Singh, I. M., Tadepalli, K., Al-Maini, M., . . . Suri, J. S. (2024). Artificial intelligence for cardiovascular disease risk assessment in personalised framework: a scoping review. <em>EClinicalMedicine</em>, 73, 102660. https://doi.org/10.1016/j.eclinm.2024.102660.</li>
-                            <li>Sun, X., Yin, Y., Yang, Q., & Huo, T. (2023). Artificial intelligence in cardiovascular diseases: diagnostic and therapeutic perspectives. <em>European Journal of Medical Research</em>, 28(1). https://doi.org/10.1186/s40001-023-01065-y.</li>
+                            <li>Singh, M., Kumar, A., Khanna, N. N., Laird, J. R., Nicolaides, A., Faa, G., Johri, A. M., Mantella, L. E., Fernandes, J. F. E., Teji, J. S., Singh, N., Fouda, M. M., Singh, R., Sharma, A., Kitas, G., Rathore, V., Singh, I. M., Tadepalli, K., Al-Maini, M., . . . Suri, J. S. (2024). Artificial intelligence for cardiovascular disease risk assessment in personalised framework: a scoping review. <em>EClinicalMedicine, 73</em>, 102660. https://doi.org/10.1016/j.eclinm.2024.102660.</li>
+                            <li>Sun, X., Yin, Y., Yang, Q., & Huo, T. (2023). Artificial intelligence in cardiovascular diseases: diagnostic and therapeutic perspectives. <em>European Journal of Medical Research, 28</em>(1). https://doi.org/10.1186/s40001-023-01065-y.</li>
                             <li>Liu, W., Laranjo, L., Klimis, H., Chiang, J., Yue, J., Marschner, S., Quiroz, J. C., Jorm, L., & Chow, C. K. (2023). Machine-learning versus traditional approaches for atherosclerotic cardiovascular risk prognostication in primary prevention cohorts: a systematic review and meta-analysis. <em>European Heart Journal - Quality of Care and Clinical Outcomes</em>. https://doi.org/10.1093/ehjqcco/qcad017.</li>
-                            <li>Cai, Y., Cai, Y., Tang, L., Wang, Y., Gong, M., Jing, T., Li, H., Li-Ling, J., Hu, W., Yin, Z., Gong, D., & Zhang, G. (2024). Artificial intelligence in the risk prediction models of cardiovascular disease and development of an independent validation screening tool: a systematic review. <em>BMC Medicine</em>, 22(1). https://doi.org/10.1186/s12916-024-03273-7.</li>
-                            <li>Wang, Y. J., Yang, K., Wen, Y., Wang, P., Hu, Y., Lai, Y., Wang, Y., Zhao, K., Tang, S., Zhang, A., Zhan, H., Lu, M., Chen, X., Yang, S., Dong, Z., Wang, Y., Liu, H., Zhao, L., Huang, L., . . . Zhao, S. (2024). Screening and diagnosis of cardiovascular disease using artificial intelligence-enabled cardiac magnetic resonance imaging. <em>Nature Medicine</em>, 30(5), 1471–1480. https://doi.org/10.1038/s41591-024-02971-2.</li>
+                            <li>Cai, Y., Cai, Y., Tang, L., Wang, Y., Gong, M., Jing, T., Li, H., Li-Ling, J., Hu, W., Yin, Z., Gong, D., & Zhang, G. (2024). Artificial intelligence in the risk prediction models of cardiovascular disease and development of an independent validation screening tool: a systematic review. <em>BMC Medicine, 22</em>(1). https://doi.org/10.1186/s12916-024-03273-7.</li>
+                            <li>Wang, Y. J., Yang, K., Wen, Y., Wang, P., Hu, Y., Lai, Y., Wang, Y., Zhao, K., Tang, S., Zhang, A., Zhan, H., Lu, M., Chen, X., Yang, S., Dong, Z., Wang, Y., Liu, H., Zhao, L., Huang, L., . . . Zhao, S. (2024). Screening and diagnosis of cardiovascular disease using artificial intelligence-enabled cardiac magnetic resonance imaging. <em>Nature Medicine, 30</em>(5), 1471–1480. https://doi.org/10.1038/s41591-024-02971-2.</li>
                             <li>Provost, C., Broughan, J., McCombe, G., Kelly, M. O., Ledwidge, M. T., Cullen, W., & Gallagher, J. (2025). Artificial intelligence (AI) models for cardiovascular disease risk prediction in Primary and Ambulatory Care: A scoping review. <em>medRxiv (Cold Spring Harbor Laboratory)</em>. https://doi.org/10.1101/2025.03.21.25324379.</li>
                             <li>Pati, A., Addula, S. R., Panigrahi, A., Sahu, B., Nayak, D. S. K., & Dash, M. (2025). Artificial intelligence in improving disease diagnosis. In <em>CRC Press eBooks</em> (pp. 24–49). https://doi.org/10.1201/9781003508595-2.</li>
-                            <li>Elvas, L. B., Almeida, A., & Ferreira, J. C. (2025). The Role of AI in Cardiovascular Event Monitoring and Early Detection: Scoping Literature review. <em>JMIR Medical Informatics</em>, 13, e64349. https://doi.org/10.2196/64349.</li>
-                            <li>Ghorashi, S. M., Fazeli, A., Hedayat, B., Mokhtari, H., Jalali, A., Ahmadi, P., Chalian, H., Bragazzi, N. L., Shirani, S., & Omidi, N. (2022). Comparison of conventional scoring systems to machine learning models for the prediction of major adverse cardiovascular events in patients undergoing coronary computed tomography angiography. <em>Frontiers in Cardiovascular Medicine</em>, 9. https://doi.org/10.3389/fcvm.2022.994483.</li>
-                            <li>Sadeghi, Z., Alizadehsani, R., Cifci, M. A., Kausar, S., Rehman, R., Mahanta, P., Bora, P. K., Almasri, A., Alkhawaldeh, R. S., Hussain, S., Alatas, B., Shoeibi, A., Moosaei, H., Hladík, M., Nahavandi, S., & Pardalos, P. M. (2024). A review of Explainable Artificial Intelligence in healthcare. <em>Computers & Electrical Engineering</em>, 118, 109370. https://doi.org/10.1016/j.compeleceng.2024.109370.</li>
-                            <li>Weiner, E. B., Dankwa-Mullan, I., Nelson, W. A., & Hassanpour, S. (2025). Ethical challenges and evolving strategies in the integration of artificial intelligence into clinical practice. <em>PLOS Digital Health</em>, 4(4), e0000810. https://doi.org/10.1371/journal.pdig.0000810.</li>
-                            <li>Rezaeikhonakdar, D. (2023). AI chatbots and challenges of HIPAA compliance for AI developers and vendors. <em>The Journal of Law Medicine & Ethics</em>, 51(4), 988–995. https://doi.org/10.1017/jme.2024.15.</li>
-                            <li>Kessels, R. P. C. (2003). Patients' memory for medical information. <em>Journal of the Royal Society of Medicine</em>, 96(5), 219–222. https://doi.org/10.1177/014107680309600504.</li>
-                            <li>Krist, A. H., Tong, S. T., Aycock, R. A., & Longo, D. R. (2017). Engaging patients in decision-making and behavior change to promote prevention. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6996004/.</li>
-                            <li>Dash, S. (2022, October 19). Understanding the ROC and AUC Intuitively. <em>Medium</em>. Retrieved December 1, 2025, from https://medium.com/@shaileydash/understanding-the-roc-and-auc-intuitively-31ca96445c02.</li>
+                            <li>Elvas, L. B., Almeida, A., & Ferreira, J. C. (2025). The Role of AI in Cardiovascular Event Monitoring and Early Detection: Scoping Literature review. <em>JMIR Medical Informatics, 13</em>, e64349. https://doi.org/10.2196/64349.</li>
+                            <li>Ghorashi, S. M., Fazeli, A., Hedayat, B., Mokhtari, H., Jalali, A., Ahmadi, P., Chalian, H., Bragazzi, N. L., Shirani, S., & Omidi, N. (2022). Comparison of conventional scoring systems to machine learning models for the prediction of major adverse cardiovascular events in patients undergoing coronary computed tomography angiography. <em>Frontiers in Cardiovascular Medicine, 9</em>. https://doi.org/10.3389/fcvm.2022.994483.</li>
+                            <li>Sadeghi, Z., Alizadehsani, R., Cifci, M. A., Kausar, S., Rehman, R., Mahanta, P., Bora, P. K., Almasri, A., Alkhawaldeh, R. S., Hussain, S., Alatas, B., Shoeibi, A., Moosaei, H., Hladík, M., Nahavandi, S., & Pardalos, P. M. (2024). A review of Explainable Artificial Intelligence in healthcare. <em>Computers & Electrical Engineering, 118</em>, 109370. https://doi.org/10.1016/j.compeleceng.2024.109370.</li>
+                            <li>Weiner, E. B., Dankwa-Mullan, I., Nelson, W. A., & Hassanpour, S. (2025). Ethical challenges and evolving strategies in the integration of artificial intelligence into clinical practice. <em>PLOS Digital Health, 4</em>(4), e0000810. https://doi.org/10.1371/journal.pdig.0000810.</li>
+                            <li>Rezaeikhonakdar, D. (2023). AI chatbots and challenges of HIPAA compliance for AI developers and vendors. <em>The Journal of Law Medicine & Ethics, 51</em>(4), 988–995. https://doi.org/10.1017/jme.2024.15.</li>
+                            <li>Kessels, R. P. C. (2003). Patients' memory for medical information. <em>Journal of the Royal Society of Medicine, 96</em>(5), 219–222. https://doi.org/10.1177/014107680309600504.</li>
+                            <li>Krist, A. H., Tong, S. T., Aycock, R. A., & Longo, D. R. (2017). Engaging patients in decision-making and behavior change to promote prevention. <em>Studies in health technology and informatics, 240</em>, 284–302. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6996004/.</li>
+                            <li>Dash, S. (2022, October 19). <em>Understanding the ROC and AUC Intuitively</em>. Medium. Retrieved December 1, 2025, from https://medium.com/@shaileydash/understanding-the-roc-and-auc-intuitively-31ca96445c02.</li>
                         </ol>
                     </div>
                 </details>

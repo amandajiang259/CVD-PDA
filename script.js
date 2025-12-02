@@ -98,11 +98,11 @@ function initializeSliders() {
         } else if (riskScore <= 4 && interventionScore >= 7) {
             // Low risk avoidance, high intervention avoidance = Status Quo
             recommendation = 'Option 1: Continue Monitoring';
-            explanation = 'Your values show that avoiding medication and testing is very important to you. This suggests that Option 1 (Continue Monitoring) may align best with your preferences, as it avoids immediate intervention.';
+            explanation = 'Your values show that avoiding medication and proactive testing is very important to you. This suggests that Option 1 (Continue Monitoring) may align best with your preferences, as it avoids immediate intervention.';
         } else if (riskScore >= 6 && interventionScore >= 6) {
             // Both values are important = Lifestyle Changes
             recommendation = 'Option 2: Lifestyle Changes Only';
-            explanation = 'Your values show that both minimizing risk and avoiding medication/testing are important to you. This suggests that Option 2 (Lifestyle Changes Only) may be a good middle ground, as it reduces risk without medication or testing.';
+            explanation = 'Your values show that both minimizing risk and avoiding medication/proactive testing are important to you. This suggests that Option 2 (Lifestyle Changes Only) may be a good middle ground, as it reduces risk without medication or testing.';
         } else {
             // Mixed values - need more discussion
             recommendation = 'Discuss with Your Doctor';
@@ -141,17 +141,17 @@ function generateFinalRecommendation() {
     let optionDetails = '';
     
     if (riskScore >= 7 && interventionScore <= 4) {
-        recommendation = 'Option 3: Aggressive Intervention (Medication/Testing)';
-        explanation = 'Based on your values, minimizing your risk of a heart event is very important to you, and you\'re willing to accept medication and testing.';
-        optionDetails = 'This option involves starting statin medication and/or undergoing diagnostic testing (stress test, CACS) to proactively address your cardiovascular risk.';
+        recommendation = 'Option 3: Aggressive Intervention (Medication/Proactive Testing)';
+        explanation = 'Based on your values, minimizing your risk of a cardiovascular event is very important to you, and you\'re willing to accept medication and testing.';
+        optionDetails = 'This option involves starting statin medication, wearing a Holter monitor, and/or undergoing diagnostic testing to proactively address your cardiovascular risk.';
     } else if (riskScore <= 4 && interventionScore >= 7) {
         recommendation = 'Option 1: Continue Monitoring (Status Quo)';
-        explanation = 'Based on your values, avoiding medication and testing is very important to you.';
+        explanation = 'Based on your values, avoiding medication and proactive testing is very important to you.';
         optionDetails = 'This option involves continuing with your current routine monitoring schedule without immediate lifestyle changes or medication.';
     } else if (riskScore >= 6 && interventionScore >= 6) {
         recommendation = 'Option 2: Lifestyle Changes Only';
-        explanation = 'Based on your values, both minimizing risk and avoiding medication/testing are important to you.';
-        optionDetails = 'This option involves making significant lifestyle changes (diet, exercise, smoking cessation) to reduce your cardiovascular risk without medication or additional testing.';
+        explanation = 'Based on your values, both minimizing risk and avoiding medication/proactive testing are important to you.';
+        optionDetails = 'This option involves making significant lifestyle changes (diet, exercise, sleep, etc.) to reduce your cardiovascular risk without medication or additional testing.';
     } else {
         recommendation = 'Discuss All Options with Your Doctor';
         explanation = 'Your values show a mixed preference. It\'s important to have a detailed discussion with your doctor about all three options.';

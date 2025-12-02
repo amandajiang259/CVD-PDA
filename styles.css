@@ -646,13 +646,22 @@ p {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 2px solid #ddd;
 }
 
 .option-icon {
     font-size: 40px;
+}
+
+.option-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0 0 20px 0;
+    padding: 0;
+    font-style: italic;
 }
 
 .option-content {
